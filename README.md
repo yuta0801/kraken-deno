@@ -5,7 +5,7 @@ GitKraken cli for Windows and Mac
 ## Install
 
 ```sh
-deno install --allow-run kraken https://denopkg.com/yuta0801/kraken-deno/index.ts
+deno install --allow-run --allow-env kraken https://denopkg.com/yuta0801/kraken-deno/index.ts
 ```
 
 ## Usage
