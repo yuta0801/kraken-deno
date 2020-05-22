@@ -5,8 +5,14 @@ GitKraken cli for Windows and Mac
 ## Install
 
 ```sh
-deno install --allow-run --allow-env kraken https://denopkg.com/yuta0801/kraken-deno/index.ts
+deno install --quiet --allow-run --allow-env --allow-read --name kraken https://denopkg.com/yuta0801/kraken-deno/index.ts
 ```
+
+Need permissions
+
+- `--allow-run` for open GitKraken
+- `--allow-env` for generate filepath to GitKraken
+- `--allow-read` for resolve relative path
 
 ## Usage
 
