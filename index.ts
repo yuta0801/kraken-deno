@@ -1,10 +1,10 @@
-import { resolve as resolvePath } from 'https://deno.land/std/path/mod.ts'
+import { resolve as resolvePath } from 'https://deno.land/std@0.52.0/path/mod.ts'
 
 function getAppPath() {
   switch (Deno.build.os) {
-    case 'win':
-      return Deno.env('LOCALAPPDATA') + '\\gitkraken\\Update.exe'
-    case 'mac':
+    case 'windows':
+      return Deno.env.get('LOCALAPPDATA') + '\\gitkraken\\Update.exe'
+    case 'darwin':
       return '/Applications/GitKraken.app/Contents/MacOS/GitKraken'
     default:
       throw 'This os is not currently supported!'
@@ -13,7 +13,7 @@ function getAppPath() {
 
 function getArgs() {
   switch (Deno.build.os) {
-    case 'win':
+    case 'windows':
       return ['--processStart', 'gitkraken.exe']
     default:
       return []
@@ -24,15 +24,15 @@ function getTargetArgs(path: string) {
   const fullpath = resolvePath(path)
 
   switch (Deno.build.os) {
-    case 'win':
+    case 'windows':
       return ['--process-start-args', `--path "${fullpath}"`]
     default:
       return ['--fullpath', path]
   }
 }
 
-async function execApp(args: string[]) {
-  const p = Deno.run({ args })
+async function execApp(cmd: string[]) {
+  const p = Deno.run({ cmd })
   await p.status()
 }
 
